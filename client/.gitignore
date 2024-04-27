@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+echo "venv/" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "ml/data/" >> .gitignore
+# Add more lines to .gitignore as necessary
