@@ -1,39 +1,45 @@
-from faker import Faker
-import csv
-import random
+import pandas as pd
+import numpy as np
 
-fake = Faker()
+def create_financial_data(num_days):
+    np.random.seed(42)  # For reproducibility
+    
+    # Generate daily data
+    dates = pd.date_range(start="2020-01-01", periods=num_days, freq='D')
+    revenue = np.random.normal(loc=100000, scale=15000, size=num_days)
 
-# Define how many records you want
-num_records = 10000
+    # Expenses as fractions of revenue
+    cogs = revenue * np.random.uniform(0.4, 0.6, num_days)
+    payroll = revenue * np.random.uniform(0.1, 0.15, num_days)
+    marketing = revenue * np.random.uniform(0.05, 0.1, num_days)
+    rd = revenue * np.random.uniform(0.05, 0.08, num_days)
+    consulting = revenue * np.random.uniform(0.02, 0.04, num_days)
+    travel = revenue * np.random.uniform(0.01, 0.02, num_days)
+    
+    # Profit calculation
+    total_expenses = cogs + payroll + marketing + rd + consulting + travel
+    profit = revenue - total_expenses
 
-# Define the field names for your CSV file
-fieldnames = ['Company', 'Month', 'Revenue', 'Expenses', 'Profit']
-
-# Function to generate a random financial figure
-def generate_financial_figure(start=10000, end=100000):
-    return round(random.uniform(start, end), 2)
-
-def create_fake_data():
-    company = fake.company()
-    month = fake.date(pattern="%Y-%m", end_datetime='now')
-    revenue = generate_financial_figure()
-    expenses = generate_financial_figure(end=revenue)  # Ensure expenses are not greater than revenue
-    profit = revenue - expenses
-    return {
-        'Company': company,
-        'Month': month,
+    # Creating a DataFrame
+    df = pd.DataFrame({
+        'Date': dates,
         'Revenue': revenue,
-        'Expenses': expenses,
+        'COGS': cogs,
+        'Payroll': payroll,
+        'Marketing': marketing,
+        'R&D': rd,
+        'Consulting': consulting,
+        'Travel': travel,
         'Profit': profit
-    }
-def write_data_to_csv(filename):
-    with open(filename, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
+    })
 
-        for _ in range(num_records):
-            writer.writerow(create_fake_data())
-if __name__ == "__main__":
-    output_filename = 'fake_financial_data.csv'
-    write_data_to_csv(output_filename)
+    return df
+
+# Generate the dataset
+num_days = 365 * 10  # 10 years of daily data
+df = create_financial_data(num_days)
+
+# Optionally, save to CSV
+df.to_csv('daily_financial_data.csv', index=False)
+
+print(df.head())
