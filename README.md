@@ -1,9 +1,10 @@
 # FinOptiX
-FinOptiX is a cutting-edge financial analytics platform that leverages machine learning to provide predictive insights and prescriptive recommendations, enhancing financial decision-making for small to medium-sized enterprises.
 
-FinOptiX: Advanced Financial Forecasting Platform
+**FinOptiX** is a cutting-edge financial analytics platform that leverages machine learning to provide predictive insights and prescriptive recommendations, enhancing financial decision-making for small to medium-sized enterprises.
 
-FinOptiX is a comprehensive financial analytics platform designed to empower small to medium-sized enterprises (SMEs) with predictive and prescriptive insights into their financial operations. Leveraging state-of-the-art machine learning models, FinOptiX offers capabilities for revenue forecasting, expense tracking, and financial risk management, integrated into a user-friendly interface.
+***FinOptiX***: Advanced Financial Forecasting Platform
+
+***FinOptiX*** is a comprehensive financial analytics platform designed to empower small to medium-sized enterprises (*SMEs*) with predictive and prescriptive insights into their financial operations. Leveraging state-of-the-art machine learning models, FinOptiX offers capabilities for **revenue forecasting**, **expense tracking**, and **financial risk management**, integrated into a user-friendly interface.
 
 **Key Features**: Predictive Financial Analytics: Utilizes historical data to forecast future financial conditions, aiding strategic planning and decision-making.
 
@@ -13,7 +14,7 @@ FinOptiX is a comprehensive financial analytics platform designed to empower sma
 
 **Custom Scenario Planning**: Allows users to simulate various financial scenarios to understand potential impacts before making critical financial decisions.
 
-Technologies:
+## Technologies
 
 **Backend**: Node.js with Express for RESTful API services.
 
