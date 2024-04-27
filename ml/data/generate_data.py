@@ -5,7 +5,7 @@ import random
 fake = Faker()
 
 # Define how many records you want
-num_records = 1000
+num_records = 10000
 
 # Define the field names for your CSV file
 fieldnames = ['Company', 'Month', 'Revenue', 'Expenses', 'Profit']
