@@ -1,17 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[20]:
-
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-
-
-# In[21]:
-
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LinearRegression
+import numpy as np
 
 def load_and_prepare_data(filepath):
     data = pd.read_csv(filepath)
@@ -20,18 +16,10 @@ def load_and_prepare_data(filepath):
     y = data['Profit']  # Target
     return X, y
 
-
-# In[22]:
-
-
 def train_model(X_train, y_train):
     model = LinearRegression()
     model.fit(X_train, y_train)
     return model
-
-
-# In[23]:
-
 
 def evaluate_model(model, X_test, y_test):
     predictions = model.predict(X_test)
@@ -40,10 +28,6 @@ def evaluate_model(model, X_test, y_test):
     print(f"Mean Squared Error: {mse}")
     print(f"R^2 Score: {r2}")
 
-
-# In[24]:
-
-
 def run_financial_modeling_workflow(filepath):
     X, y = load_and_prepare_data(filepath)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -51,21 +35,9 @@ def run_financial_modeling_workflow(filepath):
     evaluate_model(model, X_test, y_test)
     return model
 
-
-# In[25]:
-
-
 # Adjust the file path to where your CSV file is stored
 model = run_financial_modeling_workflow('../data/daily_financial_data.csv')
 
-
-# In[26]:
-
-
-import pandas as pd
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.linear_model import LinearRegression
-import numpy as np
 
 # Function to load and prepare data
 def load_and_prepare_data(filepath):
@@ -90,10 +62,6 @@ model = LinearRegression()
 # Perform cross-validation
 cross_validate_model(model, X, y)
 
-
-# In[27]:
-
-
 from sklearn.ensemble import RandomForestRegressor
 
 # Train a RandomForestRegressor to evaluate feature importance
@@ -104,13 +72,6 @@ forest_model.fit(X, y)
 feature_importances = pd.Series(forest_model.feature_importances_, index=X.columns)
 print("Feature Importances:")
 print(feature_importances.sort_values(ascending=False))
-
-
-# In[28]:
-
-
-import pandas as pd
-import numpy as np
 
 def preprocess_data(filepath):
     # Load the data
@@ -133,26 +94,8 @@ def preprocess_data(filepath):
 df_processed = preprocess_data('../data/Financials Sample Data.csv')
 print(df_processed.head())
 
-
-# In[31]:
-
-
 import joblib
 joblib.dump(forest_model, 'forest_model.pkl')
-
-
-# In[32]:
-
-
-get_ipython().system('ls -l')
-
-
-# In[33]:
-
-
-# Create synthetic test data similar to your model's training dataset
-import numpy as np
-import pandas as pd
 
 # Define a DataFrame with column names that your model expects
 # Let's assume these values:
@@ -177,10 +120,3 @@ predictions = loaded_model.predict(input_data)
 
 # Print predictions
 print(predictions)
-
-
-# In[ ]:
-
-
-
-
