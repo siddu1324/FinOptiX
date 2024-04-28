@@ -31,8 +31,7 @@ const PieChartComponent = () => {
     { name: 'Revenue', value: 0.427728 },
     { name: 'Marketing', value: 0.040455 },
     { name: 'Payroll', value: 0.033108 },
-    { name: 'R&D', value: 0.012256 },
-    { name: 'Travel', value: 0.006610 }
+    { name: 'R&D', value: 0.012256 }
   ];
 
   // Colors for each pie section

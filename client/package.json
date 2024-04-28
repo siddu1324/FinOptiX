@@ -9,8 +9,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
+<<<<<<< HEAD
     "chart.js": "^4.4.2",
     "moment": "^2.30.1",
+=======
+>>>>>>> ba793adef9258daac4b89f246735957da14728a1
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",

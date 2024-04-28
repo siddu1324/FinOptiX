@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import './ScenarioChat.css';
 
 const ScenarioChat = () => {
@@ -46,8 +47,67 @@ const ScenarioChat = () => {
         <button onClick={() => sendChat('What if expenses decrease by 20%?')} className="suggestion-button">Expenses -20%</button>
         <button onClick={() => sendChat('What if we introduce a new product line?')} className="suggestion-button">New Product Line</button>
       </div>
+=======
+import axios from 'axios';
+import './ScenarioChat.css'; // Ensure CSS styles are correctly defined
+
+const scenarioQuestions = [
+  "What if sales increase by 10% next quarter?",
+  "What if expenses are reduced by 20%?",
+  "What if we increase the marketing budget by 15%?",
+  "What if hiring is frozen for the next six months?"
+];
+
+const ScenarioPlanning = () => {
+  const [question, setQuestion] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleQuestionChange = (event) => {
+    setQuestion(event.target.value);
+  };
+
+  const handleAskClick = async () => {
+    if (!question) {
+      setResponse('Please enter a question.');
+      return;
+    }
+    try {
+      const res = await axios.post('http://localhost:5001/scenario', { question });
+      setResponse(res.data.answer);
+    } catch (error) {
+      console.error('Error asking question:', error);
+      setResponse(`Error: ${error.response ? error.response.data.error : 'Server unreachable'}`);
+    }
+  };
+
+  const handlePresetQuestion = (presetQuestion) => {
+    setQuestion(presetQuestion);
+    handleAskClick();
+  };
+
+  return (
+    <div className="chat-interface">
+      <h1>Scenario Planning</h1>
+      <input
+        type="text"
+        value={question}
+        onChange={handleQuestionChange}
+        placeholder="Ask a 'what-if' question"
+      />
+      <button onClick={handleAskClick}>Ask</button>
+      <div className="response">{response}</div>
+      <div className="presets">
+        {scenarioQuestions.map((q, index) => (
+          <button key={index} onClick={() => handlePresetQuestion(q)}>{q}</button>
+        ))}
+      </div>
+>>>>>>> ba793adef9258daac4b89f246735957da14728a1
     </div>
   );
 };
 
+<<<<<<< HEAD
 export default ScenarioChat;
+=======
+export default ScenarioPlanning;
+>>>>>>> ba793adef9258daac4b89f246735957da14728a1

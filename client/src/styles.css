@@ -256,3 +256,54 @@ nav {
   margin-bottom: 10px;  /* Adds space between the form elements */
   margin-left: 50;
 }
+.support-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.faq-container, .contact-container {
+  width: 48%;
+}
+
+.accordion-item {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.accordion-title {
+  font-weight: bold;
+}
+
+.accordion-content {
+  padding-top: 10px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input, .form-textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}
