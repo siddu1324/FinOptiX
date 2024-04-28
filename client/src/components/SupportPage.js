@@ -4,7 +4,7 @@ import "../styles.css";
 const SupportPage = () => {
   return (
     <div>
-      <h1>Support/Help</h1>
+      <h1>Support and Help</h1>
       <p>FAQs:</p>
       <ul>
         <li>How do I reset my password?</li>
