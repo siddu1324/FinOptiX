@@ -161,3 +161,21 @@ nav {
 .line-profit {
   stroke: #36a2eb; /* Bright blue for profit */
 }
+
+.support-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-container {
+  width: 50%;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Example shadow for the container */
+}
+
+.contact-container form input {
+  width: 100%;  /* Ensures full width within the form */
+  box-sizing: border-box;  /* Includes padding and border in the element's total width */
+  margin-bottom: 10px;  /* Adds space between the form elements */
+  margin-left: 50;
+}
