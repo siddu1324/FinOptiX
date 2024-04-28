@@ -163,3 +163,79 @@ nav {
 .line-profit {
   stroke: #36a2eb; /* Bright blue for profit */
 }
+.alert {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+.button-container button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.warning.high button {
+  background-color: #721c24;
+}
+
+.success.medium button {
+  background-color: #155724;
+}
+
+.info.low button, .info.medium button {
+  background-color: #0c5460;
+}
+
+.alert.warning.high {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+.alert.success.medium {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+.alert.info.low {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+.alert.info.medium {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.warning.high {
+  background-color: #f8d7da;
+}
+.success.medium {
+  background-color: #d4edda;
+}
+.info.low {
+  background-color: #d1ecf1;
+}
+.info.medium {
+  background-color: #d1ecf1;
+}
+
+.alert-legend {
+  margin-top: 20px;
+}
