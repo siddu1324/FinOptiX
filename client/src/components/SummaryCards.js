@@ -4,9 +4,9 @@ import "../styles.css";
 const SummaryCards = () => {
   // Example data, replace with actual data fetching logic
   const cards = [
-    { title: "Total Revenue", value: "$100,000" },
-    { title: "Total Expenses", value: "$70,000" },
-    { title: "Net Profit", value: "$30,000" }
+    { title: "Total Revenue", value: "$353,000" },
+    { title: "Total Expenses", value: "$278,700" },
+    { title: "Net Profit", value: "$74,300" }
   ];
 
   return (

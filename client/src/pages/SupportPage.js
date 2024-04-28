@@ -5,7 +5,7 @@ import "../styles.css";
 const SupportComponent = () => {
   return (
     <div>
-      <h1>Support and Help</h1>
+      <h1></h1>
       <SupportPage />
     </div>
   );
