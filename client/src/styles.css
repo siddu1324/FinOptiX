@@ -84,3 +84,39 @@ nav {
     border-left: 3px solid #007bff;
   }
   
+  .content-container {
+    display: flex;
+    flex-wrap: wrap;  /* Allows items to wrap onto the next line if needed */
+  }
+  
+  .home-graphs {
+    flex: 1 1 50%;  /* Grow and shrink from base of 50% */
+    min-width: 300px;  /* Prevents the components from being too small */
+    padding: 20px;
+    box-sizing: border-box;  /* Includes padding in the element's total width and height */
+  }
+
+  .home-alerts {
+    flex: 1 1 50%;  /* Grow and shrink from base of 50% */
+    min-width: 300px;  /* Prevents the components from being too small */
+    padding: 20px;
+    margin-left: 30px;  /* Increased left margin to move the alerts right */
+    box-sizing: border-box;  /* Includes padding in the element's total width and height */
+  }
+  
+  @media (max-width: 768px) {
+    .home-graphs, .home-alerts {
+      flex: 1 1 100%;  /* Each component takes full width on smaller screens */
+      margin-left: 0;  /* Removes the left margin on smaller screens */
+    }
+  }
+  
+  .financial-graphs {
+    margin-top: 60px;  /* Adds space above the graphs */
+  }
+  
+  .recent-alerts {
+    margin-top: 60px;  /* Adds space above the alerts */
+    margin-left: 50px;  /* Keeps the left spacing as previously set */
+  }
+  
