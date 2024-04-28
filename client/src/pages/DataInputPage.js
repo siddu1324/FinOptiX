@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Papa from 'papaparse';
+import moment from 'moment';
 
-const DataInputPage = () => {
+const ProfitChart = () => {
   const [data, setData] = useState([]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     Papa.parse(file, {
-      complete: (results) => {
-        setData(results.data);
-      },
       header: true,
+      complete: (results) => {
+        const formattedData = results.data.map((item) => ({
+          ...item,
+          Date: moment(item.Date).format('YYYY-MM-DD'),
+          Profit: parseFloat(item.Profit),
+        }));
+        setData(formattedData);
+      },
     });
   };
 
   return (
     <div>
-      <h1>Upload CSV File</h1>
       <input type="file" accept=".csv" onChange={handleFileUpload} />
-      <table>
-        <thead>
-          <tr>
-            {data.length > 0 &&
-              Object.keys(data[0]).map((header, index) => (
-                <th key={index}>{header}</th>
-              ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              {Object.values(row).map((cell, index) => (
-                <td key={index}>{cell}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <LineChart width={800} height={400} data={data}>
+        <XAxis dataKey="Date" />
+        <YAxis />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="Profit" stroke="#8884d8" activeDot={{ r: 8 }} />
+      </LineChart>
     </div>
   );
 };
 
-export default DataInputPage;
+export default ProfitChart;
