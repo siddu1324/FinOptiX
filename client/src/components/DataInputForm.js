@@ -1,79 +1,57 @@
 import React, { useState } from 'react';
-import "../styles.css"; 
+import axios from 'axios';
+import "../styles.css"; // Assuming your styles are defined here
 
 const DataInputForm = () => {
-  const [formData, setFormData] = useState({
-    company: '',
-    monthYear: '',
-    revenue: '',
-    expenses: '',
-    profit: ''
-  });
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you would handle submitting these values to the server.
-    console.log('Submitting form data:', formData);
-    // Reset form or give feedback to user here.
+
+    if (!selectedFile) {
+      alert('Please select a file first!');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+      const response = await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      // Handle the response from the server here
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors here
+      console.error('There was an error uploading the file:', error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Company Name:
+    <div className="data-input-form">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="csv-upload" className="csv-upload-label">
+          Upload CSV
+        </label>
         <input
-          type="text"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
+          id="csv-upload"
+          type="file"
+          accept=".csv"
+          onChange={handleFileChange}
+          className="csv-upload-input"
         />
-      </label>
-      <label>
-        Month-Year:
-        <input
-          type="month"
-          name="monthYear"
-          value={formData.monthYear}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Revenue:
-        <input
-          type="number"
-          name="revenue"
-          value={formData.revenue}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Expenses:
-        <input
-          type="number"
-          name="expenses"
-          value={formData.expenses}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Profit:
-        <input
-          type="number"
-          name="profit"
-          value={formData.profit}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -8,8 +8,14 @@ const HomePage = () => {
   return (
     <div>
       <SummaryCards />
-      <FinancialGraphs />
-      <RecentAlerts />
+      <div className="content-container">
+        <div className="financial-graphs">
+          <FinancialGraphs />
+        </div>
+        <div className="recent-alerts">
+          <RecentAlerts />
+        </div>
+      </div>
     </div>
   );
 };
