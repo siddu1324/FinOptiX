@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import OpenAI from 'openai'; // Import OpenAI from the correct module
 import cors from 'cors';
+import bodyParser from 'body-parser'; // Import bodyParser
 
 dotenv.config();
 
@@ -11,10 +12,7 @@ const jwtPassword = process.env.JWT_SECRET;
 const openaiKey = process.env.OPENAI_API_KEY;
 
 // Connect to MongoDB
-await mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+await mongoose.connect(process.env.MONGODB_URI);
 console.log("MongoDB connected");
 
 // Define the User model
@@ -25,8 +23,10 @@ const User = mongoose.model("User", {
 });
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json()); // Use bodyParser.json() middleware
+
+const PORT = process.env.PORT || 5001;
 
 // Create OpenAI client
 const openai = new OpenAI({
@@ -55,7 +55,10 @@ app.post("/login", async function(req, res){
 
 // Users endpoint to demonstrate token verification
 app.get("/users", function(req, res){
-    const token = req.headers.authorization.split(" ")[1]; // Assumes Bearer Token
+    if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) {
+        return res.status(401).json({ msg: 'No token provided' });
+    }
+    const token = req.headers.authorization.split(" ")[1]; // Extract the token
     try {
         const decoded = jwt.verify(token, jwtPassword);
         res.json({
@@ -70,27 +73,28 @@ app.get("/users", function(req, res){
 });
 
 // Scenario Planning endpoint using OpenAI
-app.post("/scenario", async (req, res) => {
-    const { question } = req.body;
-    if (!question) {
-        return res.status(400).json({ error: "No question provided" });
-    }
-    try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo", // Change to gpt-3.5-turbo or gpt-4 if available in your plan
-            prompt: question,
-            max_tokens: 150,
-            messages: [],
-            
-        });
+app.post('/scenario', async (req, res) => {
+  const { question } = req.body;
 
-        res.json({ answer: response.data.choices[0].text.trim() });
-    } catch (error) {
-        console.error('Error asking question:', error);
-        res.status(500).json({ msg: "Error processing your question", details: error.message });
-    }
+  if (!question) {
+    return res.status(400).json({ error: 'No question provided' });
+  }
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{
+        role: "system",
+        content: `Please provide analysis and advice on: ${question}`
+      }]
+    });
+
+    res.json({ answer: response.choices[0].message.content.trim() });
+  } catch (error) {
+    console.error("Failed to call OpenAI API:", error);
+    res.status(500).json({ error: 'Error processing your question' });
+  }
 });
 
 // Start the server
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
