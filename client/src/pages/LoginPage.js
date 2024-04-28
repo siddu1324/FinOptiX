@@ -63,7 +63,7 @@ function LoginPage() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f4f4f4' }}>
+    <div style={{backgroundImage: "url('/background.jpeg')",  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f4f4f4' }}>
       <form onSubmit={handleLogin} style={formStyle}>
         <label htmlFor="username">Username:</label>
         <input
