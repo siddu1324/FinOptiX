@@ -110,13 +110,54 @@ nav {
       margin-left: 0;  /* Removes the left margin on smaller screens */
     }
   }
-  
-  .financial-graphs {
-    margin-top: 60px;  /* Adds space above the graphs */
+  /* Styling for nav, summary-cards, form, and other components remains unchanged */
+
+.content-container {
+  display: flex;
+  justify-content: space-between; /* Ensures items are spaced out to each end */
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.financial-graphs, .recent-alerts {
+  flex: 1; /* Makes each child take equal space */
+  background: white; /* Background color for clarity */
+  padding: 20px; /* Padding around the content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.financial-graphs {
+  margin-right: 10px; /* Right margin to separate from the alerts section */
+}
+
+.recent-alerts {
+  margin-left: 10px; /* Left margin to separate from the financial graphs */
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column; /* Stack the children vertically on smaller screens */
   }
-  
-  .recent-alerts {
-    margin-top: 60px;  /* Adds space above the alerts */
-    margin-left: 50px;  /* Keeps the left spacing as previously set */
+
+  .financial-graphs, .recent-alerts {
+    flex: 1 1 100%; /* Each component takes full width on smaller screens */
+    margin: 0; /* Reset margins to ensure full width utilization */
+    margin-bottom: 20px; /* Adds bottom margin for spacing between components */
   }
-  
+}
+
+/* Styling for FinancialChart */
+
+.financial-graphs .LineChart {
+  background-color: #f4f4f9; /* Light background inside the chart for contrast */
+}
+
+/* Customize Line colors */
+.line-revenue {
+  stroke: #ff6384; /* Vibrant pink for revenue */
+}
+
+.line-profit {
+  stroke: #36a2eb; /* Bright blue for profit */
+}
