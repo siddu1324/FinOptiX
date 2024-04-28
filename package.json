@@ -19,5 +19,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.2",
     "react-chartjs-2": "^5.2.0"
+    "mongoose": "^8.3.2"
   }
 }
