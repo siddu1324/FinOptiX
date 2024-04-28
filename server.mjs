@@ -76,11 +76,12 @@ app.post("/scenario", async (req, res) => {
         return res.status(400).json({ error: "No question provided" });
     }
     try {
-        const response = await openai.completions.create({
+        const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo", // Change to gpt-3.5-turbo or gpt-4 if available in your plan
             prompt: question,
             max_tokens: 150,
-            messages: [{ role: 'system', content: `Create a date plan for the following locations: ${locations.join(', ')}.` }] // Include the messages property with the appropriate structure
+            messages: [],
+            
         });
 
         res.json({ answer: response.data.choices[0].text.trim() });
