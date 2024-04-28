@@ -1,6 +1,6 @@
 import React from 'react';
 import SummaryCards from '../components/SummaryCards';
-import FinancialGraphs from '../components/FinancialGraphs';
+import FinancialChart from '../components/FinancialGraphs';
 import RecentAlerts from '../components/RecentAlerts';
 import "../styles.css"; 
 
@@ -10,7 +10,8 @@ const HomePage = () => {
       <SummaryCards />
       <div className="content-container">
         <div className="financial-graphs">
-          <FinancialGraphs />
+        <FinancialChart />
+
         </div>
         <div className="recent-alerts">
           <RecentAlerts />
